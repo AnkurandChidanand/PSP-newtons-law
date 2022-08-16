@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<math.h>
+#define e 2.718
+
+float find_averagetime(float t1, float t2, float ts,float tim,float t, float t0)
+{ 
+    
+    float Tim;
+    float k;
+    k=-(log((t-ts)/(t0-ts)))/tim;
+    Tim=-(log((t2-ts)/(t1-ts)))/k;
+    return Tim;
+}
+float find_finaltemp(float t1, float t, float ts,float t2,float tim,float t, float t0)
+{
+    float t3;
+    float k;
+    k=-(log((t-ts)/(t0-ts)))/tim;
+    t3 = ts + (t1 - ts) * pow(e,-k*t);
+    return t3;
+}
+
+int main()
+{
+    char ch;
+    printf("To find t for time or final temperature T\n");
+    scanf("%c",&ch);
+    if(ch=='t')
+   {
+    float t1,t2,ts,t,t0,tim;
+    printf("Enter temperature of the body (t) \n");
+    scanf(" %f",&t);
+    printf("Enter temperature of body initially (t0) \n");
+    scanf(" %f",&t0);
+    printf("Enter time taken to decrease or increase \n");
+    scanf(" %f",&tim);
+    printf("Enter temperature of surroundings (ts) \n");
+    scanf(" %f",&ts);
+    printf("Enter the initial temperature of body (t1)\n");
+    scanf(" %f",&t1);
+    printf("Enter the final temperature of body (t2) \n");
+    scanf(" %f",&t2);
+    printf("The time required in minutes is \n");
+    printf("%.2f",find_averagetime(t1,t2,ts,tim,t,t0));
+    printf("\n");
+   }
+
+    else if(ch=='T')
+    {
+    float a,b,c,t0,t,tim,ts;
+    printf("Enter temperature of the body (t) \n");
+    scanf(" %f",&t);
+    printf("Enter temperature of body initially (t0) \n");
+    scanf(" %f",&t0);
+    printf("Enter time taken to decrease or increase \n");
+    scanf(" %f",&tim);
+    printf("Enter temperature of surroundings (ts) \n");
+    scanf(" %f",&ts);
+    printf("\n enter the initial temp  of body \n");
+    scanf("%f", &a);
+    printf("enter the time taken to cool down \n");
+    scanf("%f",&b);
+    printf("enter temp of surroundings \n");
+    scanf("%f",&c);
+    printf("final temperature of body \n");
+    printf("%.2f",find_finaltemp(t0,t,tim,ts,a,b,c));
+    }
+    else
+    printf("Error");
+    return 0;
+}
